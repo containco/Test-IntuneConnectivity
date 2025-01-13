@@ -1,6 +1,5 @@
 <#
 Script Name: Test-IntuneConnectivity.ps1
-Author: Thomas Standley
 
 DESCRIPTION
 The script checks all URL in https://learn.microsoft.com/en-us/mem/intune/fundamentals/intune-endpoints?WT.mc_id=M365-MVP-5004140&tabs=north-america#powershell-script using Invoke-WebRequest. 
