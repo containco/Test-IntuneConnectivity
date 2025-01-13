@@ -88,7 +88,6 @@ Function Get-IntuneEndpointList {
 
 Function Test-Connectivity  {
     param(
-        [string] $ProxyServer,
         [PsObject[]] $endpointList
         
     )
@@ -109,11 +108,11 @@ Function Test-Connectivity  {
                 $url = "https://" + $url #try https first
             
                 try
-				{
-					$TestResult = (Invoke-WebRequest -uri $url -UseBasicParsing ).StatusCode
-				} catch {
-					$TestResult = $_.Exception.Response.StatusCode.value__
-				}
+			{
+				$TestResult = (Invoke-WebRequest -uri $url -UseBasicParsing ).StatusCode
+			} catch {
+				$TestResult = $_.Exception.Response.StatusCode.value__
+			}
             
                 if ($TestResult) 
                 {
@@ -202,12 +201,11 @@ Function Test-IntuneConnectivity  {
     }
 
     $NetworkConfiguration | Format-Table -AutoSize
-    $ProxyServer = Get-ProxySettings
     $endpointListM365Common = Get-M365CommonEndpointList
     $endpointListIntune = Get-IntuneEndpointList
     
-    Test-Connectivity -endpointList $endpointListM365Common -ProxyServer $ProxyServer
-    Test-Connectivity -endpointList $endpointListIntune -ProxyServer $ProxyServer
+    Test-Connectivity -endpointList $endpointListM365Common 
+    Test-Connectivity -endpointList $endpointListIntune 
     Write-Host "Test-DeviceIntuneConnectivity completed successfully." -ForegroundColor Green -BackgroundColor Black
 }
 
